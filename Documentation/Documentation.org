@@ -1,7 +1,7 @@
 #+TITLE: End of Semester Project
 #+OPTIONS: toc:nil num:nil author:nil date:nil
 *** Lab Details
-- *Name: WAHAB AHMAD and Ibtihaj*
+- *Name: WAHAB AHMAD and IBTIHAJ*
 - *ROLL NO: SET-04 , SET-27*
 - *SEMESTER: 02*
 * Requirements
