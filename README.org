@@ -1,0 +1,7 @@
+* Introduction
+This project is to create a text based health care system.
+
+
+- *By:*
+  - *WAHAB   ROLL - 04*
+  - *IBTAHAJ ROLL - 27*
