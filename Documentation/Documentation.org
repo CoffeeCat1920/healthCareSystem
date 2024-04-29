@@ -1,0 +1,67 @@
+#+TITLE: End of Semester Project
+#+OPTIONS: toc:nil num:nil author:nil date:nil
+*** Lab Details
+- *Name: WAHAB AHMAD and IBTIHAJ*
+- *ROLL NO: SET-04 , SET-27*
+- *SEMESTER: 02*
+* Requirements
+1. Account Management:
+   - The system shall support two types of accounts: Doctor and Admin.
+   - Each account shall have differnt priviliges.
+2. Patient Management:
+   - Admin users can view and update patient attributes.
+   - Admin users can add and remove patients.
+   - Admin user can assign doctors to patients.
+3. Doctor Management:
+   - Admin users can list doctor attributes and update their status.
+   - Admin user can add and remove doctors.
+   - Admin user can patients to doctors.
+4. Scheduling System:
+   - The system shall enable scheduling appointments for patients with doctors at specified times.
+5. Fee Payment:
+   - Patients shall be able to pay fees through the system.
+   - Patients shall be able to get a total recipt.
+6. Dashboard Functionality:
+   - For Doctor accounts:
+     - Display the next patient appointment.
+     - Show the hours the doctor needs to spend in the facility.
+   - For Admin accounts:
+     - Present the patient with the highest severity.
+     - Display doctors whose salaries are pending.
+7. Data Persistence:
+   - All system data shall be saved in a JSON file to ensure persistence across program sessions.
+8. Medicine Procurement System:
+   - Getting a list of all the available medicines.
+   - The system shall generate a TXT file containing a list of medicines to be bought with prices and a total cost and add it to medicine database in *json*.
+   - Patients shall be able to buy from the avalible list of medicines.
+9. Authentication:
+   - The system shall implement authentication mechanisms to secure access to sensitive information.
+** Priority
+| Priority | Priority 1                                                                    |
+|----------+-------------------------------------------------------------------------------|
+|        1 | **Authentication System**                                                     |
+|          | - Implement secure login functionality for Doctor and Admin accounts.         |
+|        2 | **A System to List Patients and Update Attributes**                           |
+|          | - Functionality to view and update patient attributes.                        |
+|        3 | **A Scheduling System**                                                       |
+|          | - Ability to schedule patients' appointments with doctors.                    |
+|        4 | **Add/Delete Doctors and Patients**                                           |
+|          | - Functionality to add or remove doctors and patients from the system.        |
+|        5 | **Dashboard for Doctor and Admin Accounts**                                   |
+|          | - Display relevant information for each account type on the dashboard.        |
+|        6 | **Save Information in JSON File**                                             |
+|          | - Implement functionality to save system data in a JSON file for persistence. |
+
+| Priority | Priority 2                                                                    |
+|----------+-------------------------------------------------------------------------------|
+|        1 | **A System to List Doctors and Update Status**                                |
+|          | - Functionality to view and update doctor attributes.                         |
+|        2 | **Payment System**                                                            |
+|          | - Ability for patients to pay their fees.                                     |
+|        3 | **Medicine Purchasing System**                                                |
+|          | - Generate a medicine list in txt file format with prices and total.          |
+
+| Priority | Priority 3                                                                    |
+|----------+-------------------------------------------------------------------------------|
+|        1 | **Data Persistence**                                                          |
+|          | - Ensure data persistence even after closing the program.                     |
