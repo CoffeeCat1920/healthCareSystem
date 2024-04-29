@@ -49,8 +49,6 @@
 |          | - Functionality to add or remove doctors and patients from the system.        |
 |        5 | **Dashboard for Doctor and Admin Accounts**                                   |
 |          | - Display relevant information for each account type on the dashboard.        |
-|        6 | **Save Information in JSON File**                                             |
-|          | - Implement functionality to save system data in a JSON file for persistence. |
 
 | Priority | Priority 2                                                                    |
 |----------+-------------------------------------------------------------------------------|
