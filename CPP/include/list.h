@@ -2,6 +2,10 @@
 #define LIST_H
 
 #include <iostream>
+#include <string>
+
+// sorry I have to use it ｡ﾟ･ (>﹏<) ･ﾟ｡
+#include <optional>
 
 template<typename T>
 struct Node {
@@ -9,12 +13,21 @@ struct Node {
   Node* next;
 
   Node(T data) : data(data), next(nullptr) {}
+
+  std::string GetData() {
+    return data.GetData();
+  }
+
 };
 
 template<typename T>
 class LinkedList {
 private:
   Node<T>* head;
+
+  void clearScreen() { 
+    std::cout << "\033[2J\033[1;1H";
+  }
 
 public:
   LinkedList() : head(nullptr) {}
@@ -79,22 +92,45 @@ public:
 
   void printList() const {
     Node<T>* temp = head;
+    int index = 1;
     while (temp != nullptr) {
-      std::cout << temp->data << std::endl;
+      std::cout << index;
+      std::cout << ". " << temp->GetData() << "\n"; 
+      index++;
       temp = temp->next;
     }
   }
 
-  Node<T>* getNode(int index) const {
+  T getNode(int index) const {
     if (index < 0 || index >= count()) {
-      return nullptr;
+      return T();
     }
     Node<T>* temp = head;
     for (int i = 0; i < index; i++) {
       temp = temp->next;
     }
-    return temp;
+    return temp->data;
   }
+
+  T chooseNode() const {
+    this->printList();
+    std::cout << "\n Chose 1-" << this->count() << " (0 to quit)" << ": ";
+    int choose;
+    std::cin >> choose;
+    if (choose == 0) {
+      return T(); 
+    }
+    else {
+      if (choose > this->count()) {
+        std::cout << "Error, maximum level exceeded";
+        chooseNode();
+      }
+      else {
+        return getNode(choose);
+      }
+    }
+  }
+
 };
 
 #endif // !LIST_H
