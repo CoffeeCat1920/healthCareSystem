@@ -5,7 +5,6 @@
 #include <string>
 
 #include "class.h"
-#include "link.h"
 #include "list.h"
 
 class Admin {
@@ -27,58 +26,11 @@ private:
 
 public:
 
-  Admin() {}
-
-  Medicine AddMedicine() {
-
-    std::cout << "\nEnter the info for Medicine:\n";
-
-    std::string name;
-    Assign("name", name);
-
-    int price;
-    Assign("price", price);
-
-
-    Medicine medicine(name, price);
-    medicineList.pushFront(medicine);
-
-    return medicine;
-
-  }
-
-  Disease AddDisease() {
-    std::cout << "Enter the info for Disease: \n";
-
-    std::string name;
-    Assign("name", name);
-
-    int level;
-    Assign("level", level);
-
-    Medicine medicine = medicineList.chooseNode();
-    
-    Disease disease;
-    diseseList.pushFront(disease);
-
-    return disease;
-
-  }
-
-  void AddPatient() {
-
-    std::cout << "\nEnter the info for Patient:\n";
-
-    std::string name; 
-    Assign("name", name);
-
-    int age;
-    Assign("age", age);
-
-    std::string sex;
-    Assign("sex", sex);
-
+  Admin() {
+    medicineList.pushFront(Medicine("Panadol", 5));
+    diseseList.pushFront(Disease("General Fever", 12, medicineList.getNode(0)));
+    patientList.pushFront(Patient(Person("Ali", "Male", 12), diseseList.getNode(0), Date(3, "May", 2024), Date(4, "May", 2024), 100));
+    Doctor();
   }
 };
-
 #endif // DEBUG

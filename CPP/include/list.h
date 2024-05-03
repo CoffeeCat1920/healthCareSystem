@@ -62,10 +62,11 @@ public:
     }
   }
 
-  void pushFront(T data) {
+  T pushFront(T data) {
     Node<T>* newNode = new Node<T>(data);
     newNode->next = head;
     head = newNode;
+    return data;
   }
 
   void deleteNode(int index) {
@@ -112,24 +113,26 @@ public:
     return temp->data;
   }
 
-  T chooseNode() const {
-    this->printList();
-    std::cout << "\n Chose 1-" << this->count() << " (0 to quit)" << ": ";
-    int choose;
-    std::cin >> choose;
-    if (choose == 0) {
-      return T(); 
+
+
+T chooseNode() const {
+  int choose; 
+  printList();
+  std::cout << "\n Choose 1-" << this->count() << " (0 to quit)" << ": ";
+  std::cin >> choose;
+  if (choose == 0) {
+    return T(); 
+  }
+  else {
+    if (choose > this->count()) {
+      std::cout << " \n Error, maximum level exceeded \n";
+      chooseNode();
     }
     else {
-      if (choose > this->count()) {
-        std::cout << "Error, maximum level exceeded";
-        chooseNode();
-      }
-      else {
-        return getNode(choose);
-      }
+      return getNode(choose);
     }
   }
+}
 
 };
 

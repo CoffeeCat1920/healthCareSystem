@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "helper.h"
 
 enum Gender {
   Male=1,
@@ -14,6 +15,9 @@ struct Date {
   int day;
   std::string month;
   int year;
+  
+  std::string monthArr[12] = {"Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"};  
+  int daysInMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
   Date() : day(1), month("Jan"), year(1969) {}
   Date(int day, std::string month, int year) {
@@ -27,6 +31,41 @@ struct Date {
     return statement;
   }
 
+  bool operator==(const Date& other) const {
+    return (day == other.day && month == other.month && year == other.year);
+  }
+
+  Date AddDate() {
+
+    int day;
+    Assign("Day (1-31)", day);
+
+
+    while (day>=1 && day<=daysInMonth[day]) {
+      std::cout << "\nINVALID Day"; 
+      Assign("Day (1-31)", day);
+    }
+
+    int month;
+    Assign("Month (1-12)", month);
+
+    while (month>=12 && month<=0) {
+      std::cout << "\nINVALID Month"; 
+      Assign("Month (1-12)", month);
+    }
+
+    int year;
+    Assign("Year (without 20)", year);
+
+    while (month>=12 && month<=0) {
+      std::cout << "\nINVALID Year"; 
+      Assign("Year (without 20)", year);
+    }
+
+    return Date(day, monthArr[month], year);
+
+  }
+
 };
 
 struct Medicine {
@@ -36,8 +75,24 @@ struct Medicine {
   Medicine(std::string name, int price) : name(name), price(price) {}
 
   std::string GetData() {
-    std::string statement = name + "  " + std::to_string(price); 
+    std::string statement = name + "  " + std::to_string(price) + "Rs"; 
     return statement;
+  }
+
+  bool operator==(const Medicine& other) const {
+    return (name == other.name && price == other.price);
+  }
+
+  Medicine AddMedicine() {
+
+    std::string name;
+    Assign("Name", name);
+
+    int price;
+    Assign("Price", price);
+     
+    return Medicine(name, price);
+
   }
 
 };
@@ -92,7 +147,8 @@ private:
 public:
 
   Doctor() : Person(), qualification("0"), specilization("0"), joinDate(Date()), experience(0) {}
-  Doctor(std::string name, std::string sex, int age, std::string qualification, std::string specialization, Date joinDate, int experience) : Person(name, sex, age), qualification(qualification), specilization(specilization), joinDate(joinDate), experience(experience) {}
+
+  Doctor(Person person, std::string qualification, std::string specialization, Date joinDate, int experience) : Person(person), qualification(qualification), specilization(specialization), joinDate(joinDate), experience(experience) {}
 
   std::string GetData() {
     std::string statement = Person::GetData() + "  " + qualification + "  " +  joinDate.GetData() + std::to_string(experience);
@@ -110,7 +166,7 @@ private:
 public: 
 
   Patient() : Person(), disease(Disease()), admitDate(Date()), dischageDate(Date()), price(0) {}
-  Patient(std::string name, std::string sex, int age, Disease disease, Date admitDate, Date dischageDate) : Person(name, sex, age), disease(disease), admitDate(admitDate), dischageDate(dischageDate)  {} 
+  Patient(Person person, Disease disease, Date admitDate, Date dischageDate, int price) : Person(person), disease(disease), admitDate(admitDate), dischageDate(dischageDate), price(price)  {} 
 
   std::string GetData() {
     std::string statement = Person::GetData() + "  " + disease.GetData() + "  " + admitDate.GetData() + "  " + dischageDate.GetData() + "  " + std::to_string(price); 
