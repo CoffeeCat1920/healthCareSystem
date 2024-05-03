@@ -60,6 +60,7 @@ public:
       }
       temp->next = new Node<T>(data);
     }
+    this->deleteDuplicate();
   }
 
   T pushFront(T data) {
@@ -67,6 +68,7 @@ public:
     newNode->next = head;
     head = newNode;
     return data;
+    this->deleteDuplicate();
   }
 
   void deleteNode(int index) {
@@ -114,25 +116,47 @@ public:
   }
 
 
-
-T chooseNode() const {
-  int choose; 
-  printList();
-  std::cout << "\n Choose 1-" << this->count() << " (0 to quit)" << ": ";
-  std::cin >> choose;
-  if (choose == 0) {
-    return T(); 
-  }
-  else {
-    if (choose > this->count()) {
-      std::cout << " \n Error, maximum level exceeded \n";
-      chooseNode();
+  T chooseNode() const {
+    int choose; 
+    printList();
+    std::cout << "\n Choose 1-" << this->count() << " (0 to quit)" << ": ";
+    std::cin >> choose;
+    if (choose == 0) {
+      return T(); 
     }
     else {
+      while (choose > this->count()) {
+        std::cout << " \n Error, maximum level exceeded \n";
+        std::cout << "\n Choose 1-" << this->count() << " (0 to quit)" << ": ";
+        std::cin >> choose;
+      }
       return getNode(choose);
     }
   }
-}
+
+  void deleteDuplicate() {
+    if (head==NULL) {
+      return;
+    }
+    else {
+      Node<T>* temp1 = head, *temp2 = head;
+      int n = 0, m;
+      while (temp1!=NULL) {
+        temp2 = temp1->next;
+        m = n;
+        while (temp2!=NULL) {
+          m++;
+          if (temp1->data==temp2->data) {
+            deleteNode(m);
+            return;
+          }
+          temp2 = temp2->next;
+        }
+        temp1 = temp1->next;
+        n++;
+      }
+    }
+  }
 
 };
 

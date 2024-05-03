@@ -4,6 +4,7 @@
 #include<iostream>
 #include <string>
 
+#include "helper.h"
 #include "class.h"
 #include "list.h"
 
@@ -15,14 +16,6 @@ private:
   LinkedList<Medicine> medicineList;
   LinkedList<Disease> diseseList;
   
-  template<typename T>
-  void Assign(std::string name, T& target) {
-    T value;
-    std::cout << "\n Enter the data for " << name << ": "; 
-    std::cin >> value;
-    std::cout << "\n";
-    target = value;
-  } 
 
 public:
 
@@ -32,5 +25,18 @@ public:
     patientList.pushFront(Patient(Person("Ali", "Male", 12), diseseList.getNode(0), Date(3, "May", 2024), Date(4, "May", 2024), 100));
     Doctor();
   }
+
+  Medicine AddMedicine() {
+
+    std::string name;
+    Assign("Name", name);
+
+    int price;
+    Assign("Price", price);
+     
+    return Medicine(name, price);
+
+  }
+
 };
 #endif // DEBUG
