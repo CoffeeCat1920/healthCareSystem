@@ -1,7 +1,7 @@
 #ifndef  ADMIN_H
 #define ADMIN_H 
 
-#include<iostream>
+#include <iostream>
 #include <string>
 
 #include "helper.h"
@@ -148,6 +148,8 @@ private:
 
     Patient patient = Patient(Person(name, sex, age), disease, date, price);
 
+    patientList.pushFront(patient);
+
     std::cout << "=====================" << std::endl;
 
     return patient;
@@ -156,8 +158,12 @@ private:
 
   void AddMenu() {
     clearScreen();
+
     int choice;
-    while (choice != 0) {
+    bool entry = false; 
+
+
+    while (!entry) {
       clearScreen();
       std::cout << "=== Add Menu ===" << std::endl;
       std::cout << "0. Quit" << std::endl;
@@ -168,6 +174,10 @@ private:
       Assign("choice", choice);
 
       switch (choice) {
+        case 0:
+          std::cout << "Exit Menu.";
+          entry = true;
+          break;
         case 1:
         AddMedicine();
         break;
@@ -180,9 +190,6 @@ private:
        case 4:
         AddPatient();
         break;
-        case 0:
-          std::cout << "Quit\n";
-          break;
        default:
         std::cout << "Invalid choice. Please enter a number between 1 and 5." << std::endl;
         break;
@@ -247,17 +254,20 @@ public:
 
     clearScreen();
 
-    int choice = -1;
+    int choice = 1;
+    bool running = true;
 
-    while (choice != 0) {
+    while (running) {
      clearScreen();     
       std::cout << "===== DashBoard =====\n";
       std::cout << "0. Quit \n1. Add Elements \n2. Add List";
-      Assign("choice", choice);
+      int choice;
+      Assign("Enter your choice", choice);
       
       switch (choice) {
         case 0:
           std::cout << "Bye Bye\n";
+          running = false;
           break;
         case 1:
           AddMenu();

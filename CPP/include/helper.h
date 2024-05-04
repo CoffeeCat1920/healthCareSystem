@@ -7,7 +7,7 @@
 template<typename T>
 void Assign(std::string name, T& target) {
   T value;
-  std::cout << "\n Enter the data for " << name << ": "; 
+  std::cout << "\n Enter the " << name << ": "; 
   std::cin >> value;
 
   if (!std::cin) {

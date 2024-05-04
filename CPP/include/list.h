@@ -128,12 +128,12 @@ public:
       return T(); 
     }
     else {
-      while (choose > this->count()) {
+      while (choose > this->count() && choose != 0) {
         std::cout << " \n Error, maximum level exceeded \n";
         std::cout << "\n Choose 1-" << this->count() << " (0 to quit)" << ": ";
         std::cin >> choose;
       }
-      return getNode(choose);
+      return getNode(choose-1);
     }
   }
 
