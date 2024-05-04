@@ -20,10 +20,8 @@ private:
 public:
 
   Admin() {
-    medicineList.pushFront(Medicine("Panadol", 5));
-    diseseList.pushFront(Disease("General Fever", 12, medicineList.getNode(0)));
-    patientList.pushFront(Patient(Person("Ali", "Male", 12), diseseList.getNode(0), Date(3, "May", 2024), Date(4, "May", 2024), 100));
-    Doctor();
+    medicineList.pushFront(Medicine("Panadol", 12)); 
+    medicineList.pushFront(Medicine("Panadol", 12)); 
   }
 
   Medicine AddMedicine() {
@@ -33,9 +31,13 @@ public:
 
     int price;
     Assign("Price", price);
-     
+
     return Medicine(name, price);
 
+  }
+
+  void List() {
+    medicineList.printList(); 
   }
 
 };

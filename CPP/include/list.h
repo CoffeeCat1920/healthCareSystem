@@ -60,15 +60,15 @@ public:
       }
       temp->next = new Node<T>(data);
     }
-    this->deleteDuplicate();
+    deleteDuplicate();
   }
 
   T pushFront(T data) {
     Node<T>* newNode = new Node<T>(data);
     newNode->next = head;
     head = newNode;
-    return data;
     this->deleteDuplicate();
+    return data;
   }
 
   void deleteNode(int index) {
@@ -147,6 +147,7 @@ public:
         while (temp2!=NULL) {
           m++;
           if (temp1->data==temp2->data) {
+            std::cout << "\nDuplicate Entry. Deleting ......\n" << std::endl;
             deleteNode(m);
             return;
           }
