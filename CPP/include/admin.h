@@ -21,7 +21,6 @@ public:
 
   Admin() {
     medicineList.pushFront(Medicine("Panadol", 12)); 
-    medicineList.pushFront(Medicine("Panadol", 12)); 
   }
 
   Medicine AddMedicine() {
@@ -35,6 +34,8 @@ public:
     return Medicine(name, price);
 
   }
+
+
 
   void List() {
     medicineList.printList(); 
