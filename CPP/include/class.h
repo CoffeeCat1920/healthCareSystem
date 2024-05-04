@@ -83,17 +83,6 @@ struct Medicine {
     return (name == other.name && price == other.price);
   }
 
-  Medicine AddMedicine() {
-
-    std::string name;
-    Assign("Name", name);
-
-    int price;
-    Assign("Price", price);
-     
-    return Medicine(name, price);
-
-  }
 
 };
 
@@ -102,9 +91,17 @@ struct Disease {
   Medicine medicine; 
 
   Disease() : name("ERROR NO NAME"), medicine(Medicine()) {};
+<<<<<<< HEAD
   Disease(std::string name, Medicine medicine) {
+=======
+  Disease(std::string name, int level, Medicine medicine) {
+>>>>>>> main
     this->name = name;
     this->medicine = medicine;
+  }
+
+  bool operator==(const Disease& other) const {
+    return (name == other.name && medicine == other.medicine);
   }
 
   std::string GetData() {
@@ -135,21 +132,28 @@ public:
     return statement;
   }
 
+  bool operator==(const Person& other) const {
+    return (name == other.name && sex == other.sex && age == other.age);
+  }
+
 };
 
 class Doctor : public Person {
 private: 
-  std::string qualification, specilization;
+  std::string qualification;
   Date joinDate;
-  int experience;
 public:
 
-  Doctor() : Person(), qualification("0"), specilization("0"), joinDate(Date()), experience(0) {}
+  Doctor() : Person(), qualification("0"), joinDate(Date()) {}
 
-  Doctor(Person person, std::string qualification, std::string specialization, Date joinDate, int experience) : Person(person), qualification(qualification), specilization(specialization), joinDate(joinDate), experience(experience) {}
+  Doctor(Person person, std::string qualification, Date joinDate) : Person(person), qualification(qualification), joinDate(joinDate) {}
+
+  bool operator==(const Doctor& other) const {
+    return (Person::operator==(other) && qualification == other.qualification && joinDate == other.joinDate);   
+  }
 
   std::string GetData() {
-    std::string statement = Person::GetData() + "  " + qualification + "  " +  joinDate.GetData() + std::to_string(experience);
+    std::string statement = Person::GetData() + "  " + qualification + "  " +  joinDate.GetData(); 
     return statement;
   }
 
@@ -159,15 +163,18 @@ class Patient : public Person {
 private:
   Disease disease;
   Date admitDate;
-  Date dischageDate; 
   int price;
 public: 
 
-  Patient() : Person(), disease(Disease()), admitDate(Date()), dischageDate(Date()), price(0) {}
-  Patient(Person person, Disease disease, Date admitDate, Date dischageDate, int price) : Person(person), disease(disease), admitDate(admitDate), dischageDate(dischageDate), price(price)  {} 
+  Patient() : Person(), disease(Disease()), admitDate(Date()), price(0) {}
+  Patient(Person person, Disease disease, Date admitDate, int price) : Person(person), disease(disease), admitDate(admitDate), price(price)  {} 
+
+  bool operator==(const Patient& other) {
+    return (Person::operator==(other) && disease == other.disease && admitDate == other.admitDate && price == other.price);
+  }
 
   std::string GetData() {
-    std::string statement = Person::GetData() + "  " + disease.GetData() + "  " + admitDate.GetData() + "  " + dischageDate.GetData() + "  " + std::to_string(price); 
+    std::string statement = Person::GetData() + "  " + disease.GetData() + "  " + admitDate.GetData() + "  " + std::to_string(price); 
     return statement;
   }
 

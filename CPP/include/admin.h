@@ -4,6 +4,7 @@
 #include<iostream>
 #include <string>
 
+#include "helper.h"
 #include "class.h"
 #include "list.h"
 #include "helper.h"
@@ -16,15 +17,24 @@ private:
   LinkedList<Medicine> medicineList;
   LinkedList<Disease> diseseList;
   
+<<<<<<< HEAD
 public:
 
   Admin() {
     medicineList.pushFront(Medicine("Panadol", 5));
+=======
+
+public:
+
+  Admin() {
+    medicineList.pushFront(Medicine("Panadol", 12)); 
+>>>>>>> main
   }
 
   Medicine AddMedicine() {
 
     std::string name;
+<<<<<<< HEAD
     Assign("name of the Medicine", name);
 
     int price;
@@ -74,6 +84,21 @@ public:
     std::cout << "\nEnter the date of joining\n";
     date = date.AddDate();
 
+=======
+    Assign("Name", name);
+
+    int price;
+    Assign("Price", price);
+
+    return Medicine(name, price);
+
+  }
+
+
+
+  void List() {
+    medicineList.printList(); 
+>>>>>>> main
   }
 
 };

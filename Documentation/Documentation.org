@@ -32,10 +32,10 @@
    - All system data shall be saved in a JSON file to ensure persistence across program sessions.
 8. Medicine Procurement System:
    - Getting a list of all the available medicines.
-   - The system shall generate a TXT file containing a list of medicines to be bought with prices and a total cost and add it to medicine database in *json*.
    - Patients shall be able to buy from the avalible list of medicines.
 9. Authentication:
    - The system shall implement authentication mechanisms to secure access to sensitive information.
+10. No Duplicate Entries
 ** Priority
 | Priority | Priority 1                                                                    |
 |----------+-------------------------------------------------------------------------------|
