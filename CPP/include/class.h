@@ -99,18 +99,16 @@ struct Medicine {
 
 struct Disease {
   std::string name;
-  int level;
   Medicine medicine; 
 
-  Disease() : name("ERROR NO NAME"), level(0), medicine(Medicine()) {};
-  Disease(std::string name, int level, Medicine medicine) {
+  Disease() : name("ERROR NO NAME"), medicine(Medicine()) {};
+  Disease(std::string name, Medicine medicine) {
     this->name = name;
-    this->level = level;
     this->medicine = medicine;
   }
 
   std::string GetData() {
-    std::string statement = name + "  " + std::to_string(level) + medicine.name;
+    std::string statement = name + "  " + medicine.name;
     return statement;
   } 
 

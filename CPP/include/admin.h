@@ -6,6 +6,7 @@
 
 #include "class.h"
 #include "list.h"
+#include "helper.h"
 
 class Admin {
 private:
@@ -15,22 +16,65 @@ private:
   LinkedList<Medicine> medicineList;
   LinkedList<Disease> diseseList;
   
-  template<typename T>
-  void Assign(std::string name, T& target) {
-    T value;
-    std::cout << "\n Enter the data for " << name << ": "; 
-    std::cin >> value;
-    std::cout << "\n";
-    target = value;
-  } 
-
 public:
 
   Admin() {
     medicineList.pushFront(Medicine("Panadol", 5));
-    diseseList.pushFront(Disease("General Fever", 12, medicineList.getNode(0)));
-    patientList.pushFront(Patient(Person("Ali", "Male", 12), diseseList.getNode(0), Date(3, "May", 2024), Date(4, "May", 2024), 100));
-    Doctor();
   }
+
+  Medicine AddMedicine() {
+
+    std::string name;
+    Assign("name of the Medicine", name);
+
+    int price;
+    Assign("price of the Medicine", price);
+
+    Medicine medicine = Medicine(name, price);
+
+    medicineList.pushFront(medicine);
+
+    return medicine;
+
+  } 
+
+  Disease AddDisease() {
+     
+    std::string name;
+    Assign("name of the Disease", name);
+
+    Medicine medicine;    
+
+    int choice = choose("Medicine");
+
+    if (choice == 1) {
+      medicine = medicineList.chooseNode();
+    }
+    else if (choice == 2) {
+      medicine = AddMedicine();
+    }
+    else {
+      AddDisease();
+    }
+
+    Disease disease = Disease(name, medicine);
+
+    diseseList.pushFront(disease);
+
+    return disease;
+
+  }
+
+  Doctor AddDoctor() {
+
+    std::string name;
+    Assign("Name of Doctor", name);
+
+    Date date;
+    std::cout << "\nEnter the date of joining\n";
+    date = date.AddDate();
+
+  }
+
 };
 #endif // DEBUG
