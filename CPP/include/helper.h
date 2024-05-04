@@ -31,4 +31,9 @@ int choose(std::string name) {
   else return 0;
 }
 
+
+void clearScreen() { 
+  std::cout << "\033[2J\033[1;1H";
+}
+
 #endif // !HELPER_H

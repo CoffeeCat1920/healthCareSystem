@@ -37,27 +37,24 @@ struct Date {
 
   Date AddDate() {
 
-    int day;
-    Assign("Day (1-31)", day);
-
-
-    while (day>=1 && day<=daysInMonth[day]) {
-      std::cout << "\nINVALID Day"; 
-      Assign("Day (1-31)", day);
-    }
-
     int month;
     Assign("Month (1-12)", month);
-
-    while (month>=12 && month<=0) {
+    while (month > 12 || month < 1) {
       std::cout << "\nINVALID Month"; 
       Assign("Month (1-12)", month);
+    }
+
+    int day;
+    Assign("Day (1-31)", day);
+    while (day < 1 || day > daysInMonth[month]){
+      std::cout << "\nINVALID Day"; 
+      Assign("Day (1-31)", day);
     }
 
     int year;
     Assign("Year (without 20)", year);
 
-    while (month>=12 && month<=0) {
+    while (month > 99) {
       std::cout << "\nINVALID Year"; 
       Assign("Year (without 20)", year);
     }
@@ -91,21 +88,14 @@ struct Disease {
   Medicine medicine; 
 
   Disease() : name("ERROR NO NAME"), medicine(Medicine()) {};
-<<<<<<< HEAD
-  Disease(std::string name, Medicine medicine) {
-=======
-  Disease(std::string name, int level, Medicine medicine) {
->>>>>>> main
-    this->name = name;
-    this->medicine = medicine;
-  }
+  Disease(std::string name, Medicine medicine) : medicine(medicine), name(name) {}
 
   bool operator==(const Disease& other) const {
     return (name == other.name && medicine == other.medicine);
   }
 
   std::string GetData() {
-    std::string statement = name + "  " + medicine.name;
+    std::string statement = name + "  " + medicine.GetData();
     return statement;
   } 
 

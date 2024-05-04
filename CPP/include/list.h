@@ -94,6 +94,9 @@ public:
   }
 
   void printList() const {
+    if (head == NULL) {
+      std::cout << "\nNo Entry\n";
+    }
     Node<T>* temp = head;
     int index = 1;
     while (temp != nullptr) {

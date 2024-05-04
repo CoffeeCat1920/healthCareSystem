@@ -4,7 +4,8 @@
 int main (int argc, char *argv[]) {
   
   Admin admin;
-  admin.List();
+
+  admin.DashBoard();
 
   return 0;
 }
