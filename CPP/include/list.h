@@ -120,21 +120,32 @@ public:
 
 
   T chooseNode() const {
-    int choose; 
-    printList();
-    std::cout << "\n Choose 1-" << this->count() << " (0 to quit)" << ": ";
-    std::cin >> choose;
-    if (choose == 0) {
-      return T(); 
-    }
-    else {
-      while (choose > this->count() && choose != 0) {
-        std::cout << " \n Error, maximum level exceeded \n";
-        std::cout << "\n Choose 1-" << this->count() << " (0 to quit)" << ": ";
-        std::cin >> choose;
+
+    int choose = 1; 
+    bool quit = false;
+
+    while (!quit) {
+      printList();
+      if (head == NULL) {
+        quit = true;
+        break;
+      } 
+      std::cout << "\n Choose 1-" << this->count() << ": ";
+      std::cin >> choose;
+      if (choose == 0) {
+        choose = 1;
       }
-      return getNode(choose-1);
+      else {
+        while (choose > this->count() && choose != 0) {
+          std::cout << " \n Error, maximum level exceeded \n";
+          std::cout << "\n Choose 1-" << this->count() << " (0 to quit)" << ": ";
+          std::cin >> choose;
+        }
+      }
     }
+
+    return getNode(choose-1);
+
   }
 
   void deleteDuplicate() {

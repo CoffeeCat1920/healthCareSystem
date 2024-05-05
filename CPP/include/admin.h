@@ -205,7 +205,8 @@ private:
     std::cout << "=== List Menu ===" << std::endl;
 
     int choice;
-    while (choice != 0) {
+    bool quit = false;
+    while (!quit) {
       std::cout << "0. Quit" << std::endl;
       std::cout << "1. Medicine List" << std::endl;
       std::cout << "2. Disease List" << std::endl;
@@ -216,6 +217,7 @@ private:
       switch (choice) {
         case 0:
           std::cout << "Quit\n";
+          quit = true;
           break;
         case 1:
           std::cout << "=== Medicine List ===" << std::endl;
@@ -246,9 +248,69 @@ private:
     
   }
 
+  void DeleteMenu() {
+
+    clearScreen();
+
+    int choice, index;
+    bool quit = false;
+    
+    while (!quit) {
+
+      std::cout << "0. Quit \n1. Delete Medicine \n2. Delete Disease \n3. Delete Doctor \n4. Delete Patient \n";
+      Assign("choice", choice);
+
+      switch (choice) {
+        case 0:
+        std::cout << "Quit\n";
+        quit = true;
+        break;
+        case 1:
+        std::cout << "=== Medicine List ===" << std::endl;
+        medicineList.printList();
+        std::cout << "=====================" << std::endl;
+        std::cout << "\n";
+        Assign("index", index);
+        medicineList.deleteNode(index);
+        break;
+        case 2:
+        std::cout << "=== Disease List ===" << std::endl;
+        diseseList.printList();
+        std::cout << "====================" << std::endl;
+        std::cout << "\n";
+        Assign("index", index);
+        diseseList.deleteNode(index);
+        break;
+        case 3:
+        std::cout << "=== Doctor List ===" << std::endl;
+        doctorList.printList();
+        std::cout << "===================" << std::endl;
+        std::cout << "\n";
+        Assign("index", index);
+        doctorList.deleteNode(index);
+        break;
+        case 4:
+        std::cout << "=== Patient List ===" << std::endl;
+        patientList.printList();
+        std::cout << "====================" << std::endl;
+        std::cout << "\n";
+        Assign("index", index);
+        patientList.deleteNode(index);
+        break;
+        default:
+        std::cout << "Invalid\n";
+        break;
+      }
+    }
+
+  }
+
 public:
 
-  Admin() {}
+  Admin() {
+    medicineList.pushFront(Medicine("Panadol", 5));
+    diseseList.pushFront(Disease("Fever", medicineList.getNode(0)));
+  }
 
   void DashBoard() {
 
@@ -260,7 +322,7 @@ public:
     while (running) {
      clearScreen();     
       std::cout << "===== DashBoard =====\n";
-      std::cout << "0. Quit \n1. Add Elements \n2. Add List";
+      std::cout << "0. Quit \n1. Add Elements \n2. List Elements \n3. Delete Elements";
       int choice;
       Assign("Enter your choice", choice);
       
@@ -275,6 +337,8 @@ public:
         case 2:
           ListMenu();
           break;
+        case 3:
+          DeleteMenu();
         default:
           std::cout << "\nInvalid input.\n\n";
       }
