@@ -1,11 +1,12 @@
-#include "./include/admin.h"
 #include <string>
+
+#include "./include/system.h"
 
 int main (int argc, char *argv[]) {
   
-  Admin admin;
+  System system; 
 
-  admin.DashBoard();
+  system.Login();
 
   return 0;
 }

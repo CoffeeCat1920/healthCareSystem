@@ -12,10 +12,12 @@
 class Admin {
 private:
 
-  LinkedList<Patient> patientList;
-  LinkedList<Doctor> doctorList;
-  LinkedList<Medicine> medicineList;
-  LinkedList<Disease> diseseList;
+  std::string name, password;
+
+  LinkedList<Patient>& patientList;
+  LinkedList<Doctor>& doctorList;
+  LinkedList<Medicine>& medicineList;
+  LinkedList<Disease>& diseseList;
   
   Medicine AddMedicine() {
 
@@ -27,6 +29,7 @@ private:
     Assign("name of the Medicine", name);
 
     int price;
+
     Assign("price of the Medicine", price);
 
     Medicine medicine = Medicine(name, price);
@@ -307,9 +310,15 @@ private:
 
 public:
 
-  Admin() {
+  Admin(std::string password, LinkedList<Medicine>& medicineList, LinkedList<Disease>& diseseList, LinkedList<Doctor>& doctorList, LinkedList<Patient>& patientList) : medicineList(medicineList), diseseList(diseseList), patientList(patientList), doctorList(doctorList), password(password) {
+
     medicineList.pushFront(Medicine("Panadol", 5));
     diseseList.pushFront(Disease("Fever", medicineList.getNode(0)));
+
+  }
+
+  bool IsPassword (std::string password) {
+    return (this->password == password);
   }
 
   void DashBoard() {
