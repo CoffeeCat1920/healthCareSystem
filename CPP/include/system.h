@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 
+#include "doctor.h"
 #include "list.h"
 #include "helper.h"
 #include "admin.h"
@@ -38,6 +39,22 @@ private:
     
   }
 
+  void DoctorDase(Doctor doctor) {
+
+    doctor.DashBoard();
+
+  }
+
+  void DoctorLogin() {
+
+    if (doctorList.count() == 0) return;
+
+    Doctor  doctor = doctorList.chooseNode();
+
+    DoctorDase(doctor);
+
+  }
+
 public:
 
   void Login() {
@@ -61,7 +78,9 @@ public:
           quit = true;
           break;
          case 2:
-          std::cout << "Invalid\n";
+          DoctorLogin();
+          Login();
+          quit = true;
           break;
          default:
           std::cout << "Invalid\n";

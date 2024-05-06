@@ -8,6 +8,7 @@
 #include "class.h"
 #include "list.h"
 #include "helper.h"
+#include "doctor.h"
 
 class Admin {
 private:
@@ -53,18 +54,18 @@ private:
 
     Medicine medicine;    
 
-    bool entry = false;
+    bool quit = false;
     int choice;
     
-    while (!entry) {
+    while (!quit) {
       choice = choose("Medicine");
       if (choice == 1) {
         medicine = medicineList.chooseNode();
-        entry = true;
+        quit = true;
       }
       else if (choice == 2) {
         medicine = AddMedicine();
-        entry = true;
+        quit = true;
       }
     }
 
@@ -100,7 +101,10 @@ private:
     std::string qualification;
     Assign("Qualification", qualification);
 
-    Doctor doctor = Doctor(Person(name, sex, age), qualification, date);
+    std::string password;
+    Assign("password", password); 
+
+    Doctor doctor = Doctor(Person(name, sex, age), qualification, date, password);
 
     doctorList.pushFront(doctor);
 
