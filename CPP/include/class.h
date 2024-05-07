@@ -112,7 +112,7 @@ public:
   bool isFree() {
     return (list.count() < limit);
   }
-  
+  void AddPati
 };
 
 class Person {
