@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include "helper.h"
+#include "list.h"
 
 enum Gender {
   Male=1,
@@ -99,6 +100,19 @@ struct Disease {
     return statement;
   } 
 
+};
+
+class Shedule {
+private:
+  LinkedList<Patient()> list;
+  int limit;
+public:
+  Shedule() : limit(2) {}
+  Shedule(int limit) : limit(limit) {}
+  bool isFree() {
+    return (list.count() < limit);
+  }
+  
 };
 
 class Person {
