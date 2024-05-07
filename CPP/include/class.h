@@ -54,7 +54,7 @@ struct Date {
     int year;
     Assign("Year (without 20)", year);
 
-    while (month > 99) {
+    while (year > 99) {
       std::cout << "\nINVALID Year"; 
       Assign("Year (without 20)", year);
     }
