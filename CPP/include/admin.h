@@ -1,6 +1,7 @@
 #ifndef  ADMIN_H
 #define ADMIN_H 
 
+#include <cstdio>
 #include <iostream>
 #include <string>
 
@@ -8,7 +9,6 @@
 #include "class.h"
 #include "list.h"
 #include "helper.h"
-#include "doctor.h"
 
 class Admin {
 private:
@@ -312,23 +312,14 @@ private:
 
   }
 
-  void ShedulePatient() {
-    if (patientList.count() <= 0) return;
-    else if (doctorList.count() <= 0) return;
-    clearScreen();
-    std::cout << "===== Shedule Patient ====" << std::endl;
-    Patient patient = patientList.chooseNode();
-    Doctor doctor = doctorList.chooseNode();
-    doctor.ShedulePatient(patient);
-    return;
-  }
-
 public:
 
   Admin(std::string password, LinkedList<Medicine>& medicineList, LinkedList<Disease>& diseseList, LinkedList<Doctor>& doctorList, LinkedList<Patient>& patientList) : medicineList(medicineList), diseseList(diseseList), patientList(patientList), doctorList(doctorList), password(password) {
 
     medicineList.pushFront(Medicine("Panadol", 5));
     diseseList.pushFront(Disease("Fever", medicineList.getNode(0)));
+    doctorList.pushFront(Doctor(Person ("Afaq", "Mail", 29), "PhD", Date (1, 1, 21), "123"));
+    patientList.pushFront(Patient(Person("Umer", "Mail", 35), Disease(diseseList.getNode(0)), Date(1, 1, 21), 12) );
 
   }
 
@@ -344,9 +335,9 @@ public:
     bool running = true;
 
     while (running) {
-     clearScreen();     
+      clearScreen();     
       std::cout << "===== DashBoard =====\n";
-      std::cout << "0. Quit \n1. Add Elements \n2. List Elements \n3. Shedule a Patient\n4. Delete Elements";
+      std::cout << "0. Quit \n1. Add Elements \n2. List Elements \n3. Delete Elements";
       int choice;
       Assign("Enter your choice", choice);
       
@@ -361,10 +352,8 @@ public:
         case 2:
           ListMenu();
           break;
-        case 4:
-          DeleteMenu();
         case 3:
-          ShedulePatient();
+          DeleteMenu();
           break;
         default:
           std::cout << "\nInvalid input.\n\n";

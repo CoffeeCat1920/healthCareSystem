@@ -132,10 +132,6 @@ public:
       } 
       std::cout << "\n Choose 1-" << this->count() << ": ";
       std::cin >> choose;
-      if (choose == 0) {
-        choose = 1;
-      }
-      else {
 
         while (choose > this->count() && choose != 0) {
           std::cout << " \n Error, maximum level exceeded \n";
@@ -145,7 +141,6 @@ public:
 
         quit = true;
 
-      }
     }
 
     return getNode(choose-1);

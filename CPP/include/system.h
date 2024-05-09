@@ -4,7 +4,6 @@
 #include <iostream>
 #include <string>
 
-#include "doctor.h"
 #include "list.h"
 #include "helper.h"
 #include "admin.h"
@@ -39,7 +38,7 @@ private:
     
   }
 
-  void DoctorDase(Doctor doctor) {
+  void DoctorDash(Doctor doctor) {
 
     doctor.DashBoard();
 
@@ -47,11 +46,19 @@ private:
 
   void DoctorLogin() {
 
-    if (doctorList.count() == 0) return;
+    Doctor doctor;
+    doctor = doctorList.chooseNode();
 
-    Doctor  doctor = doctorList.chooseNode();
+    std::string passsword;
+    Assign("passsword for doctor", passsword);
 
-    DoctorDase(doctor);
+    if (doctor.IsPassword(passsword)) {
+      DoctorDash(doctor);
+    }
+    else {
+      std::cout << "\n INVALID PASSWORD \n";
+      return;
+    }
 
   }
 

@@ -21,9 +21,9 @@ struct Date {
   int daysInMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
   Date() : day(1), month("Jan"), year(1969) {}
-  Date(int day, std::string month, int year) {
+  Date(int day, int month, int year) {
     this->day = day;
-    this->month = month;
+    this->month = monthArr[month-1];
     this->year = year;
   }
 
@@ -47,7 +47,7 @@ struct Date {
 
     int day;
     Assign("Day (1-31)", day);
-    while (day < 1 || day > daysInMonth[month]){
+    while (day < 1 || day > daysInMonth[month-1]){
       std::cout << "\nINVALID Day"; 
       Assign("Day (1-31)", day);
     }
@@ -60,7 +60,7 @@ struct Date {
       Assign("Year (without 20)", year);
     }
 
-    return Date(day, monthArr[month], year);
+    return Date(day, month, year);
 
   }
 
@@ -100,19 +100,6 @@ struct Disease {
     return statement;
   } 
 
-};
-
-class Shedule {
-private:
-  LinkedList<Patient()> list;
-  int limit;
-public:
-  Shedule() : limit(2) {}
-  Shedule(int limit) : limit(limit) {}
-  bool isFree() {
-    return (list.count() < limit);
-  }
-  void AddPati
 };
 
 class Person {
@@ -161,6 +148,68 @@ public:
     return statement;
   }
 
+};
+
+class Doctor : public Person {
+private: 
+
+  std::string qualification;
+  std::string password;
+  Date joinDate;
+  LinkedList<Patient> shedule;
+  bool isEmpty;
+
+public:
+
+  Doctor() : Person(), qualification("0"), joinDate(Date()), password("123") {}
+
+  Doctor(Person person, std::string qualification, Date joinDate, std::string password) : Person(person), qualification(qualification), joinDate(joinDate), password(password), isEmpty(false) {}
+
+  bool operator==(const Doctor& other) const {
+    return (Person::operator==(other) && qualification == other.qualification && joinDate == other.joinDate);   
+  }
+
+  void DashBoard() {
+
+    int choice;
+    bool quit = false;
+
+    while (!quit) {
+
+      clearScreen();
+
+      std::cout << "=== Dashboard ===\n";
+      std::cout << "0. Quit" << std::endl;
+      Assign("Enter your choice", choice);
+
+      switch (choice) {
+        case 0:
+          quit = true;
+          break;
+        default:
+          std::cout << "\nInvalid input.\n\n";
+      }
+
+    } 
+
+  }
+
+  std::string GetData() {
+    std::string statement = Person::GetData() + "  " + qualification + "  " +  joinDate.GetData(); 
+    return statement;
+  }
+
+  bool IsPassword(std::string password) {
+    return (this->password == password);
+  }
+
+};
+
+class Shedule {
+private:
+  Doctor doctor;
+  Patient patient;
+public:
 };
 
 #endif // ! CLASS_H
