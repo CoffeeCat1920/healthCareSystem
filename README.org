@@ -1,7 +1,57 @@
 * Introduction
 This project is to create a text based health care system.
 
-
 - *By:*
   - *WAHAB   ROLL - 04*
   - *IBTIHAJ ROLL - 27*
+
+** Lab Details
+- *Name: WAHAB AHMAD and IBTIHAJ*
+- *ROLL NO: SET-04 , SET-27*
+- *SEMESTER: 02*
+*** Requirements
+1. Account Management:
+   - The system shall support two types of accounts: Doctor and Admin.
+   - Each account shall have differnt priviliges.
+2. Patient Management:
+   - Admin users can view and update patient attributes.
+   - Admin users can add and remove patients.
+   - Admin user can assign doctors to patients.
+3. Doctor Management:
+   - Admin users can list doctor attributes and update their status.
+   - Admin user can add and remove doctors.
+   - Admin user can patients to doctors.
+4. Scheduling System:
+   - The system shall enable scheduling appointments for patients with doctors at specified times.
+5. Dashboard Functionality:
+   - Display the next patient appointment.
+   - Display all the functionality for different users.
+6. Medicine Procurement System:
+   - To be able to add different medicines with price.
+   - Ability to assign different medicines to different diseases.
+7. Authentication:
+   - The system shall implement authentication mechanisms to secure access to sensitive information.
+8. No Duplicate Entries
+*** Priority
+| Priority | Priority 1                                                                    |
+|----------+-------------------------------------------------------------------------------|
+|        1 | **Authentication System**                                                     |
+|          | - Implement secure login functionality for Doctor and Admin accounts.         |
+|        2 | **A System to List Patients and Update Attributes**                           |
+|          | - Functionality to view and update patient attributes.                        |
+|        3 | **A Scheduling System**                                                       |
+|          | - Ability to schedule patients' appointments with doctors.                    |
+|        4 | **Add/Delete Doctors and Patients**                                           |
+|          | - Functionality to add or remove doctors and patients from the system.        |
+|        5 | **Dashboard for Doctor and Admin Accounts**                                   |
+|          | - Display relevant information for each account type on the dashboard.        |
+
+| Priority | Priority 2                                                                    |
+|----------+-------------------------------------------------------------------------------|
+|        1 | **A System to List Doctors and Update Status**                                |
+|          | - Functionality to view and update doctor attributes.                         |
+
+| Priority | Priority 3                                                                    |
+|----------+-------------------------------------------------------------------------------|
+|        1 | **Data Persistence**                                                          |
+|          | - Ensure data persistence even after closing the program.                     |

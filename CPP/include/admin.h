@@ -358,8 +358,8 @@ public:
 
     medicineList.pushFront(Medicine("Panadol", 5));
     diseseList.pushFront(Disease("Fever", medicineList.getNode(0)));
-    doctorList.pushFront(Doctor(Person ("Afaq", "Mail", 29), "PhD", Date (1, 1, 21), &sheduleList, "123"));
-    patientList.pushFront(Patient(Person("Umer", "Mail", 35), Disease(diseseList.getNode(0)), Date(1, 1, 21), 12) );
+    doctorList.pushFront(Doctor(Person ("Ali", "Mail", 29), "PhD", Date (1, 1, 21), &sheduleList, "123"));
+    patientList.pushFront(Patient(Person("Ahmad", "Mail", 35), Disease(diseseList.getNode(0)), Date(1, 1, 21), 12) );
 
   }
 
