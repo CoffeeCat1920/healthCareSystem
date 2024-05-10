@@ -127,6 +127,10 @@ public:
     return (name == other.name && sex == other.sex && age == other.age);
   }
 
+  std::string GetName() {
+    return name;
+  }
+
 };
 
 class Patient : public Person {
@@ -148,7 +152,13 @@ public:
     return statement;
   }
 
+  std::string GetName() {
+    return Person::GetName();
+  }
+
 };
+
+class Shedule;
 
 class Doctor : public Person {
 private: 
@@ -156,17 +166,36 @@ private:
   std::string qualification;
   std::string password;
   Date joinDate;
-  LinkedList<Patient> shedule;
   bool isEmpty;
+
+  LinkedList<Shedule>* sheduleList;
 
 public:
 
-  Doctor() : Person(), qualification("0"), joinDate(Date()), password("123") {}
+  Doctor() : Person(), qualification("0"), joinDate(Date()), password("123"), isEmpty(false), sheduleList((new LinkedList<Shedule>())) {}
 
-  Doctor(Person person, std::string qualification, Date joinDate, std::string password) : Person(person), qualification(qualification), joinDate(joinDate), password(password), isEmpty(false) {}
+  Doctor(Person person, std::string qualification, Date joinDate, LinkedList<Shedule>* sheduleList, std::string password) : Person(person), qualification(qualification), joinDate(joinDate), password(password), isEmpty(false), sheduleList(sheduleList) {}
 
   bool operator==(const Doctor& other) const {
     return (Person::operator==(other) && qualification == other.qualification && joinDate == other.joinDate);   
+  }
+
+  void DeleteShedule() {
+
+    if (sheduleList->count() <= 0) return;
+
+    int i;
+
+    while (i > sheduleList->count()) {
+      clearScreen();
+      sheduleList->printList();
+      Assign("which patient you want to check", i);
+    }
+    
+    sheduleList->deleteNode(i);
+
+    return;
+
   }
 
   void DashBoard() {
@@ -174,29 +203,48 @@ public:
     int choice;
     bool quit = false;
 
+
+
     while (!quit) {
 
       clearScreen();
 
       std::cout << "=== Dashboard ===\n";
       std::cout << "0. Quit" << std::endl;
+      std::cout << "1. List Shedule" << std::endl;
+      std::cout << "2. Check the Patient" << std::endl;
       Assign("Enter your choice", choice);
 
       switch (choice) {
         case 0:
           quit = true;
           break;
+        case 1:
+          std::cout << "==== List Shedule ====" << std::endl;
+          sheduleList->printList();
+          std::cout << "======================" << std::endl;
+          KeyPress();
+          break;
+        case 2:
+          std::cout << "==== Delete Shedule ====" << std::endl;         
+          DeleteShedule();
+          std::cout << "========================" << std::endl;
+          KeyPress();
         default:
           std::cout << "\nInvalid input.\n\n";
       }
-
+       
     } 
-
+    
   }
 
   std::string GetData() {
     std::string statement = Person::GetData() + "  " + qualification + "  " +  joinDate.GetData(); 
     return statement;
+  }
+
+  std::string GetName() {
+    return this->Person::GetName();
   }
 
   bool IsPassword(std::string password) {
@@ -207,9 +255,31 @@ public:
 
 class Shedule {
 private:
-  Doctor doctor;
+
   Patient patient;
+  Date date;
+  Doctor doctor;
+
 public:
+
+  Shedule():  patient(Patient()), date(Date()), doctor(Doctor()) {}
+
+  bool operator ==(const Shedule& other) {
+    return (patient == other.patient && date == other.date);
+  }
+
+  Shedule(Doctor doctor, Patient patient, Date date) {
+    this->patient = patient;
+    this->date = date;
+    this->doctor = doctor;
+  }
+
+  std::string GetData() { 
+  std::string statement = doctor.GetName() + "  " + patient.GetName() + "  " + date.GetData();
+  return statement;
+}
+
 };
+
 
 #endif // ! CLASS_H

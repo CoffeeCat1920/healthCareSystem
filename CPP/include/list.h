@@ -60,14 +60,12 @@ public:
       }
       temp->next = new Node<T>(data);
     }
-    deleteDuplicate();
   }
 
   T pushFront(T data) {
     Node<T>* newNode = new Node<T>(data);
     newNode->next = head;
     head = newNode;
-    this->deleteDuplicate();
     return data;
   }
 

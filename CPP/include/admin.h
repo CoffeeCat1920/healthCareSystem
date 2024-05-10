@@ -19,7 +19,9 @@ private:
   LinkedList<Doctor>& doctorList;
   LinkedList<Medicine>& medicineList;
   LinkedList<Disease>& diseseList;
-  
+  LinkedList<Shedule>& sheduleList;
+
+
   Medicine AddMedicine() {
 
     clearScreen();
@@ -104,7 +106,7 @@ private:
     std::string password;
     Assign("password", password); 
 
-    Doctor doctor = Doctor(Person(name, sex, age), qualification, date, password);
+    Doctor doctor = Doctor(Person(name, sex, age), qualification, date, &sheduleList, password);
 
     doctorList.pushFront(doctor);
 
@@ -178,6 +180,7 @@ private:
       std::cout << "2. Add Disease" << std::endl;
       std::cout << "3. Add Doctor" << std::endl;
       std::cout << "4. Add Patient" << std::endl;
+      std::cout << "5. Add Shedule" << std::endl;
       Assign("choice", choice);
 
       switch (choice) {
@@ -197,6 +200,9 @@ private:
        case 4:
         AddPatient();
         break;
+       case 5:
+        AddShedule();
+        break;
        default:
         std::cout << "Invalid choice. Please enter a number between 1 and 5." << std::endl;
         break;
@@ -204,6 +210,32 @@ private:
     }
   } 
 
+  Shedule AddShedule() {
+
+
+    std::cout << "==== Add Shedule ====" << std::endl;
+
+    Doctor doctor;
+    doctor = doctorList.chooseNode();
+
+    std::cout << "\n";
+
+    Patient patient;
+    patient = patientList.chooseNode();
+
+    std::cout << "Add Date of Shedule" << std::endl;
+
+    Date date;
+    date = date.AddDate();
+
+    std::cout << "=====================" << std::endl;
+
+    Shedule shedule = Shedule(doctor, patient, date);
+    sheduleList.pushFront(shedule);
+
+    return shedule;
+
+  }
 
   void ListMenu() {
 
@@ -219,6 +251,7 @@ private:
       std::cout << "2. Disease List" << std::endl;
       std::cout << "3. Doctor List" << std::endl;
       std::cout << "4. Patient List" << std::endl;
+      std::cout << "5. Shedule List" << std::endl;
       Assign("choice", choice);
 
       switch (choice) {
@@ -244,6 +277,11 @@ private:
         case 4:
           std::cout << "=== Patient List ===" << std::endl;
           patientList.printList();
+          std::cout << "=====================" << std::endl;
+          break;
+        case 5:
+          std::cout << "=== Shedule List ===" << std::endl;
+          sheduleList.printList();
           std::cout << "=====================" << std::endl;
           break;
         default:
@@ -314,11 +352,13 @@ private:
 
 public:
 
-  Admin(std::string password, LinkedList<Medicine>& medicineList, LinkedList<Disease>& diseseList, LinkedList<Doctor>& doctorList, LinkedList<Patient>& patientList) : medicineList(medicineList), diseseList(diseseList), patientList(patientList), doctorList(doctorList), password(password) {
+  
+
+  Admin(std::string password, LinkedList<Medicine>& medicineList, LinkedList<Disease>& diseseList, LinkedList<Doctor>& doctorList, LinkedList<Patient>& patientList, LinkedList<Shedule>& sheduleList) : medicineList(medicineList), diseseList(diseseList), patientList(patientList), doctorList(doctorList), sheduleList(sheduleList), password(password) {
 
     medicineList.pushFront(Medicine("Panadol", 5));
     diseseList.pushFront(Disease("Fever", medicineList.getNode(0)));
-    doctorList.pushFront(Doctor(Person ("Afaq", "Mail", 29), "PhD", Date (1, 1, 21), "123"));
+    doctorList.pushFront(Doctor(Person ("Afaq", "Mail", 29), "PhD", Date (1, 1, 21), &sheduleList, "123"));
     patientList.pushFront(Patient(Person("Umer", "Mail", 35), Disease(diseseList.getNode(0)), Date(1, 1, 21), 12) );
 
   }

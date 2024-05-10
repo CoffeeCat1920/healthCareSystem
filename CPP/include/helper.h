@@ -21,6 +21,15 @@ void Assign(std::string name, T& target) {
   target = value;
 } 
 
+void KeyPress() {
+  int i;
+  bool close = false;
+  while (!close) {
+    Assign("0 to go back", i);
+    if (i == 0) close = true;
+  }
+}
+
 int choose(std::string name) {
   std::string statement = "Choose from List(1) or enter new " + name + "(2) or 0 to quit: ";
   std::cout << statement; 

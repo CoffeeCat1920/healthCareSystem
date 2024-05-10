@@ -16,8 +16,9 @@ private:
   LinkedList<Disease> diseseList;
   LinkedList<Doctor> doctorList;
   LinkedList<Patient> patientList;
+  LinkedList<Shedule> sheduleList;
 
-  Admin admin = Admin("admin", medicineList, diseseList, doctorList, patientList);
+  Admin admin = Admin("admin", medicineList, diseseList, doctorList, patientList, sheduleList);
 
   void AdminDash() {
     admin.DashBoard();
